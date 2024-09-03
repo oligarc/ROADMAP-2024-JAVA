@@ -39,7 +39,7 @@ public class Funciones {
 				break;
 
 			case 2:
-
+				borrarContactoOpcion();
 				break;
 
 			case 3:
@@ -89,7 +89,25 @@ public class Funciones {
 	
 	public static void borrarContactoOpcion() {
 		
+		sc.nextLine();
+		boolean contactoEncontrado=false;
 		
+		System.out.println("Introduce el nombre del contacto que deseas borrar: ");
+		String nombreContacto = sc.nextLine();
+		
+		for (Contacto contacto : listaContactos) {
+			
+			if(contacto.getName().toLowerCase().equals(nombreContacto.toLowerCase())) {
+				listaContactos.remove(contacto);
+				contactoEncontrado=true;
+				System.out.println("Contacto eliminado con éxito.");
+				break;
+			}
+		}
+		if(!contactoEncontrado) {
+			System.out.println("Contacto no encontrado.");
+		}
+		pedirOpcion();
 		
 	}
 	

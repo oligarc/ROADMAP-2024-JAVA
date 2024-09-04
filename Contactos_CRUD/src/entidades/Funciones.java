@@ -43,11 +43,11 @@ public class Funciones {
 				break;
 
 			case 3:
-
+				buscarContactoOpcion();
 				break;
 
 			case 4:
-
+				actualizaContactoOpcion();
 				break;
 
 			case 5:
@@ -55,7 +55,7 @@ public class Funciones {
 				break;
 
 			case 6:
-				
+				borrarAgendaCompleta();
 				break;
 
 			case 7:
@@ -109,6 +109,64 @@ public class Funciones {
 		}
 		pedirOpcion();
 		
+	}
+	
+	public static void buscarContactoOpcion() {
+		
+		sc.nextLine();
+		System.out.println("Introduce el nombre del contacto a buscar: ");
+		String nombreContacto = sc.nextLine();
+		int numeroContacto=0;
+		boolean encontrado=false;
+		
+		for (Contacto contacto : listaContactos) {
+			
+			if(contacto.getName().toLowerCase().equals(nombreContacto.toLowerCase())) {
+				numeroContacto=contacto.getPhone();
+				encontrado=true;
+			}
+		}
+		
+		if(encontrado) {
+			System.out.println(nombreContacto +" , teléfono: " +numeroContacto);
+		}else {
+			System.out.println("Contacto no encontrado.");
+		}
+		
+		pedirOpcion();
+	}
+	
+	public static void actualizaContactoOpcion() {
+		
+		sc.nextLine();
+		System.out.println("Introduzca el nombre del contacto que quiera actualizar: ");
+		String nombreContacto = sc.nextLine();
+		int nuevoTelefono=0;
+		boolean encontrado = false;
+		
+		for (Contacto contacto : listaContactos) {
+			
+			if(contacto.getName().toLowerCase().equals(nombreContacto.toLowerCase())) {
+				System.out.println("Introduce su nuevo número de teléfono: ");
+				nuevoTelefono = sc.nextInt();
+				contacto.setPhone(nuevoTelefono);
+				encontrado=true;
+			}
+		}
+		if(encontrado) {
+			System.out.println("El nuevo número de teléfono de " +nombreContacto + " es el " +nuevoTelefono);
+		}else {
+			System.out.println("Contacto no encontrado.");
+		}
+		
+		pedirOpcion();
+	}
+	
+	public static void borrarAgendaCompleta() {
+		
+		System.out.println("Borrando agenda completa...");
+		listaContactos.clear();
+		pedirOpcion();
 	}
 	
 	public static void mostrarAgendaCompleta() {
